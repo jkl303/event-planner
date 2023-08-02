@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { SharedLayout } from "./components/SharedLayout/SharedLayout";
+import { lazy, useEffect } from "react";
+import { GlobalStyle } from "./styles/GlobalStyle";
+import { useSelector } from "react-redux";
+import { selectFilteredEvents } from "./redux/events/selectors";
 
-function App() {
+const HomePage = lazy(() => import("./pages/Home/Home"));
+const EventDetailsPage = lazy(() =>
+  import("./pages/EventDetails/EventDetails")
+);
+const CreateEventPage = lazy(() => import("./pages/CreateEvent/CreateEvent"));
+const EditEventPage = lazy(() => import("./pages/EditEvent/EditEvent"));
+
+const App = () => {
+  const events = useSelector(selectFilteredEvents);
+  console.log(events);
+
+  useEffect(() => {
+    localStorage.setItem("events", JSON.stringify(events));
+  }, [events]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="details/:id" element={<EventDetailsPage />} />
+          <Route path="create" element={<CreateEventPage />} />
+          <Route path="edit" element={<EditEventPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Route>
+      </Routes>
+      <GlobalStyle />
+    </>
   );
-}
+};
 
 export default App;
