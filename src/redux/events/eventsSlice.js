@@ -16,7 +16,7 @@ const eventsSlice = createSlice({
         const {
           title,
           description,
-          data,
+          date,
           time,
           location,
           category,
@@ -29,7 +29,7 @@ const eventsSlice = createSlice({
             id: nanoid(),
             title,
             description,
-            data,
+            date,
             time,
             location,
             category,

@@ -3,7 +3,7 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { lazy, useEffect } from "react";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { useSelector } from "react-redux";
-import { selectFilteredEvents } from "./redux/events/selectors";
+import { selectEvents } from "./redux/events/selectors";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const EventDetailsPage = lazy(() =>
@@ -13,8 +13,7 @@ const CreateEventPage = lazy(() => import("./pages/CreateEvent/CreateEvent"));
 const EditEventPage = lazy(() => import("./pages/EditEvent/EditEvent"));
 
 const App = () => {
-  const events = useSelector(selectFilteredEvents);
-  console.log(events);
+  const events = useSelector(selectEvents);
 
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
@@ -27,7 +26,7 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="details/:id" element={<EventDetailsPage />} />
           <Route path="create" element={<CreateEventPage />} />
-          <Route path="edit" element={<EditEventPage />} />
+          <Route path="edit/:id" element={<EditEventPage />} />
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>

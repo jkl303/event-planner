@@ -2,7 +2,7 @@ import { nanoid } from "@reduxjs/toolkit";
 
 export const initialEvents = [
   {
-    id: "123ff",
+    id: nanoid(),
     title: "Galery Opening",
     description:
       "Discover an enchanting evening celebrating the world of art at our exclusive gallery opening.",
@@ -11,7 +11,7 @@ export const initialEvents = [
     location: "Poltava",
     category: "Art",
     picture: require("./../images/painting.jpg"),
-    priority: 3,
+    priority: "High",
   },
   {
     id: nanoid(),
@@ -23,7 +23,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Conference",
     picture: require("./../images/lights.jpg"),
-    priority: 2,
+    priority: "Medium",
   },
   {
     id: nanoid(),
@@ -35,7 +35,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Workshop",
     picture: require("./../images/audience.jpg"),
-    priority: 3,
+    priority: "High",
   },
   {
     id: nanoid(),
@@ -47,7 +47,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Party",
     picture: require("./../images/glasses.jpg"),
-    priority: 3,
+    priority: "High",
   },
   {
     id: nanoid(),
@@ -59,7 +59,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Business",
     picture: require("./../images/writing.jpg"),
-    priority: 2,
+    priority: "Medium",
   },
   {
     id: nanoid(),
@@ -71,7 +71,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Workshop",
     picture: require("./../images/studio.jpg"),
-    priority: 1,
+    priority: "Low",
   },
   {
     id: nanoid(),
@@ -83,7 +83,7 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Music",
     picture: require("./../images/balls.jpg"),
-    priority: 3,
+    priority: "High",
   },
   {
     id: nanoid(),
@@ -95,6 +95,6 @@ export const initialEvents = [
     location: "Kyiv",
     category: "Sport",
     picture: require("./../images/sportEvent.jpg"),
-    priority: 1,
+    priority: "Low",
   },
 ];
