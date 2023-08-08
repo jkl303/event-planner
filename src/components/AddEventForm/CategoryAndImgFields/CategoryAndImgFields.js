@@ -1,6 +1,9 @@
 import { ErrorMessage, Field } from "formik";
 import { categories } from "../../../data/categories";
 import { ErrorMessageStyled } from "../ErrorMessage.styled";
+import { SelectField } from "../SelectField/SelectField";
+import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
+import { ImgFieldStyled } from "./ImgField.styled";
 
 export const CategoryAndImgFields = ({ setPicture }) => {
   const onChange = (e) => {
@@ -13,37 +16,58 @@ export const CategoryAndImgFields = ({ setPicture }) => {
     };
   };
 
+  const categoriesOptions = categories.map((category) => ({
+    value: category,
+    label: category,
+  }));
+
+  const prioritiesOptions = [
+    { value: "Low", label: "Low" },
+    { value: "Medium", label: "Medium" },
+    { value: "High", label: "High" },
+  ];
+
   return (
-    <div>
-      <label htmlFor="category">
-        Category
-        <Field as="select" name="category">
-          <option value="Category">Category</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </Field>
+    <>
+      <div>
+        <label htmlFor="category">
+          Category
+          <Field
+            name="category"
+            component={SelectField}
+            isSearchable={false}
+            options={categoriesOptions}
+            defaultValue={{ value: "Input", label: "Input" }}
+          />
+        </label>
         <ErrorMessage name="category" component={ErrorMessageStyled} />
-      </label>
+      </div>
+      <div>
+        <ImgFieldStyled htmlFor="picture">
+          Add picture
+          <Field name="picture" type="file" onChange={onChange} />
+          <div>
+            <span>Input</span>
+          </div>
+          <button type="button" onClick={() => setPicture("")}>
+            <Cross />
+          </button>
+        </ImgFieldStyled>
+      </div>
 
-      <label htmlFor="picture">
-        Add picture
-        <Field name="picture" type="file" onChange={onChange} />
-        <button type="button" onClick={() => setPicture("")}>
-          x
-        </button>
-      </label>
-
-      <label htmlFor="priority">
-        Priority
-        <Field as="select" name="priority">
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </Field>
-      </label>
-    </div>
+      <div>
+        <label htmlFor="priority">
+          Priority
+          <Field
+            component={SelectField}
+            name="priority"
+            isSearchable={false}
+            options={prioritiesOptions}
+            defaultValue={{ value: "Input", label: "Input" }}
+            menuPlacement="top"
+          />
+        </label>
+      </div>
+    </>
   );
 };

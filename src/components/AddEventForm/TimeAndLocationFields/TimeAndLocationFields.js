@@ -1,37 +1,116 @@
 import { ErrorMessage, Field } from "formik";
-import Calendar from "react-calendar";
-import TimePicker from "react-time-picker";
-import "react-time-picker/dist/TimePicker.css";
 import { ErrorMessageStyled } from "../ErrorMessage.styled";
+import { useEffect, useRef, useState } from "react";
+import {
+  ButtonsWrapper,
+  CalendarButton,
+  CalendarFieldWrapper,
+  CalendarStyled,
+  CalendarWrapper,
+} from "./Calendar.styled";
+import { ReactComponent as Dropdown } from "../../../images/svg/dropdown.svg";
+import { ButtonStyled } from "../../../styles/Button.styled";
+import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
+import { InputStyled } from "../Input.styled";
 
-export const TimeAndLocationFields = ({ setDate, setTime, setFieldValue }) => {
+export const TimeAndLocationFields = ({ setTime, setFieldValue }) => {
+  const [date, setDate] = useState(new Date() || null);
+  const [isShowCalendar, setIsShowCalendar] = useState(false);
+
+  const wrapperRef = useRef();
+
+  const addDate = () => {
+    setFieldValue("date", date.toLocaleDateString("en-CA").slice(0, 10));
+    setIsShowCalendar(false);
+  };
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!wrapperRef.current.contains(e.target)) {
+        setIsShowCalendar(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
   return (
-    <div>
-      <label htmlFor="date">
-        Select date
-        <Calendar onChange={setDate} name="date" />
-        <ErrorMessage name="title" component={ErrorMessageStyled} />
-      </label>
+    <>
+      <div>
+        <label htmlFor="date">
+          Select date
+          <CalendarFieldWrapper ref={wrapperRef}>
+            <CalendarButton
+              type="button"
+              onClick={() => setIsShowCalendar((prevState) => !prevState)}
+              $isShowCalendar={isShowCalendar}
+            >
+              {isShowCalendar ? "Select Date" : "Input"}
+              <Dropdown />
+            </CalendarButton>
+            {isShowCalendar && (
+              <CalendarWrapper>
+                <CalendarStyled
+                  onChange={setDate}
+                  name="date"
+                  calendarType="gregory"
+                  minDate={new Date()}
+                  defaultValue={date}
+                />
+                <ButtonsWrapper>
+                  <ButtonStyled
+                    type="button"
+                    onClick={() => setIsShowCalendar(false)}
+                    $white
+                  >
+                    Cancel
+                  </ButtonStyled>
+                  <ButtonStyled type="button" onClick={addDate}>
+                    Choose date
+                  </ButtonStyled>
+                </ButtonsWrapper>
+              </CalendarWrapper>
+            )}
+          </CalendarFieldWrapper>
+        </label>
+        <ErrorMessage name="date" component={ErrorMessageStyled} />
+      </div>
 
-      <label htmlFor="time">
-        Select time
-        <TimePicker onChange={setTime} name="time" />
+      <div>
+        <InputStyled htmlFor="time">
+          Select time
+          <Field name="time" placeholder="Input" />
+          <button
+            type="button"
+            onClick={() => {
+              setFieldValue("time", "");
+            }}
+          >
+            <Cross />
+          </button>
+        </InputStyled>
         <ErrorMessage name="time" component={ErrorMessageStyled} />
-      </label>
+      </div>
 
-      <label htmlFor="location">
-        Location
-        <Field name="location" />
-        <button
-          type="button"
-          onClick={() => {
-            setFieldValue("location", "");
-          }}
-        >
-          x
-        </button>
+      <div>
+        <InputStyled htmlFor="location">
+          Location
+          <Field name="location" placeholder="Input" />
+          <button
+            type="button"
+            onClick={() => {
+              setFieldValue("location", "");
+            }}
+          >
+            <Cross />
+          </button>
+        </InputStyled>
         <ErrorMessage name="location" component={ErrorMessageStyled} />
-      </label>
-    </div>
+      </div>
+    </>
   );
 };

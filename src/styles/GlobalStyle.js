@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import "modern-normalize";
 import { variables } from "./variables";
+import BG from "../images/BG.jpg";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -11,6 +12,8 @@ body {color: var(--text);
   line-height: 1.5;
 }
 
+section { background-image: url(${BG});}
+
 h1,
 h2,
 h3,
@@ -18,6 +21,12 @@ p {
   margin: 0;
   color: var(--text);
 }
+
+h1 {
+font-size: 32px;
+font-weight: 600;
+line-height: normal;
+margin: 40px 0; }
 
 ul,
 ol {

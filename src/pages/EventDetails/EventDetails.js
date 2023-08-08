@@ -3,6 +3,15 @@ import { Container } from "../../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { selectEvents } from "../../redux/events/selectors";
 import { deleteEvent } from "../../redux/events/eventsSlice";
+import {
+  CategoryWrapper,
+  ContentWrapper,
+  DateWrapper,
+  EventDetailsStyled,
+  ImgWrapper,
+  TextWrapper,
+} from "./EventDetails.styled";
+import { ButtonBigStyled } from "../../styles/ButtonBig.styled";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -33,27 +42,31 @@ const EventDetails = () => {
     <section>
       <Container>
         <Link to={backLinkHref}>Back</Link>
-        <div>
-          <h1>{title}</h1>
-          <img
-            src={picture || require("../../images/stubWide.png")}
-            alt={title}
-            width={100}
-          ></img>
-          <p>{description}</p>
-          <div>
+        <EventDetailsStyled>
+          <CategoryWrapper>
             <span>{category}</span>
             <span>{priority}</span>
-            <span>{location}</span>
-            <span>{`${date} at ${time}`}</span>
-          </div>
+          </CategoryWrapper>
           <div>
-            <Link to={`/edit/${id}`}>Edit</Link>
-            <button type="button" onClick={deleteCurrent}>
+            <ImgWrapper>
+              <DateWrapper>
+                <p>{`${date} at ${time}`}</p>
+                <p>{location}</p>
+              </DateWrapper>
+              <img
+                src={picture || require("../../images/stub.png")}
+                alt={title}
+              ></img>
+            </ImgWrapper>
+            <TextWrapper>
+              <h2>{title}</h2>
+              <p>{description}</p>
+            </TextWrapper>
+            <ButtonBigStyled type="button" onClick={deleteCurrent}>
               Delete event
-            </button>
+            </ButtonBigStyled>
           </div>
-        </div>
+        </EventDetailsStyled>
       </Container>
     </section>
   );

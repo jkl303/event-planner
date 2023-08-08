@@ -5,6 +5,7 @@ import {
   selectSort,
 } from "../../redux/events/selectors";
 import { EventCard } from "../EventCard/EventCard";
+import { EventListStyled } from "./EventList.styled";
 
 const priorities = { Low: 1, Medium: 2, High: 3 };
 
@@ -41,13 +42,13 @@ export const EventsList = () => {
     });
 
   return (
-    <ul>
+    <EventListStyled>
       {filteredEvents.length > 0 &&
         filteredEvents.map((event) => (
           <li key={event.id}>
             <EventCard event={event} />
           </li>
         ))}
-    </ul>
+    </EventListStyled>
   );
 };

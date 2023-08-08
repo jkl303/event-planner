@@ -1,5 +1,13 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
+import {
+  CategoryWrapper,
+  ContentWrapper,
+  DateWrapper,
+  EventCardStyled,
+  ImgWrapper,
+  TextWrapper,
+} from "./EventCard.styled";
 
 export const EventCard = ({ event }) => {
   const lcn = useLocation();
@@ -17,30 +25,31 @@ export const EventCard = ({ event }) => {
   } = event;
 
   return (
-    <div>
-      <div>
-        <img
-          src={picture || require("../../images/stub.png")}
-          alt={title}
-          width={100}
-        ></img>
-        <div>
-          <span>{category}</span>
-          <span>{priority}</span>
-        </div>
-        <div>
-          <p>{`${date} at ${time}`}</p>
-          <p>{location}</p>
-        </div>
-        <div>
+    <EventCardStyled>
+      <CategoryWrapper>
+        <span>{category}</span>
+        <span>{priority}</span>
+      </CategoryWrapper>
+      <ContentWrapper>
+        <ImgWrapper>
+          <DateWrapper>
+            <p>{`${date} at ${time}`}</p>
+            <p>{location}</p>
+          </DateWrapper>
+          <img
+            src={picture || require("../../images/stub.png")}
+            alt={title}
+          ></img>
+        </ImgWrapper>
+        <TextWrapper>
           <h2>{title}</h2>
           <p>{description}</p>
-        </div>
+        </TextWrapper>
         <Link to={`/details/${id}`} state={{ from: lcn }}>
           More info
         </Link>
-      </div>
-    </div>
+      </ContentWrapper>
+    </EventCardStyled>
   );
 };
 
