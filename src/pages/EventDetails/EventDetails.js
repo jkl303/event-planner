@@ -5,7 +5,6 @@ import { selectEvents } from "../../redux/events/selectors";
 import { deleteEvent } from "../../redux/events/eventsSlice";
 import {
   CategoryWrapper,
-  ContentWrapper,
   DateWrapper,
   EventDetailsStyled,
   ImgWrapper,

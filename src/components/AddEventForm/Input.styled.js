@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import { mediaQueries } from "../../styles/mediaQueries";
 
 export const InputStyled = styled.label`
   display: flex;
