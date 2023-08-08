@@ -13,7 +13,7 @@ import { ButtonStyled } from "../../../styles/Button.styled";
 import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
 import { InputStyled } from "../Input.styled";
 
-export const TimeAndLocationFields = ({ setTime, setFieldValue }) => {
+export const TimeAndLocationFields = ({ setFieldValue }) => {
   const [date, setDate] = useState(new Date() || null);
   const [isShowCalendar, setIsShowCalendar] = useState(false);
 

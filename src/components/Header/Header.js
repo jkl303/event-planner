@@ -1,5 +1,5 @@
 import { Container } from "../Container/Container";
-import { SelectLanguageStyled, SelectStyled } from "./SelectLanguage.styled";
+import { SelectLanguageStyled } from "./SelectLanguage.styled";
 import { HeaderStyled, HeaderWrapper, InputWrapper } from "./Header.styled";
 import { SearchList } from "./SearchList/SearchList";
 import { useState } from "react";
