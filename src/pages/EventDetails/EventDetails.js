@@ -1,16 +1,18 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Container } from "../../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { selectEvents } from "../../redux/events/selectors";
 import { deleteEvent } from "../../redux/events/eventsSlice";
 import {
-  CategoryWrapper,
-  DateWrapper,
+  AdditionalInfoWrapper,
+  BackLinkStyled,
+  ButtonsWrapper,
   EventDetailsStyled,
-  ImgWrapper,
-  TextWrapper,
+  InfoWrapper,
 } from "./EventDetails.styled";
-import { ButtonBigStyled } from "../../styles/ButtonBig.styled";
+import { ContainerStyled } from "../../styles/Container.styled";
+import { ReactComponent as ArrowLeft } from "../../images/svg/arrowLeft.svg";
+import { ColoredPriorityStyled } from "../../styles/ColoredPriority.styled";
+import { ButtonStyled } from "../../styles/Button.styled";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -21,6 +23,7 @@ const EventDetails = () => {
   const backLinkHref = lcn.state?.from ?? "/";
 
   const events = useSelector(selectEvents);
+
   const {
     title,
     description,
@@ -39,34 +42,36 @@ const EventDetails = () => {
 
   return (
     <section>
-      <Container>
-        <Link to={backLinkHref}>Back</Link>
+      <ContainerStyled>
+        <BackLinkStyled to={backLinkHref}>
+          <ArrowLeft />
+          Back
+        </BackLinkStyled>
+        <h1>{title}</h1>
         <EventDetailsStyled>
-          <CategoryWrapper>
-            <span>{category}</span>
-            <span>{priority}</span>
-          </CategoryWrapper>
-          <div>
-            <ImgWrapper>
-              <DateWrapper>
-                <p>{`${date} at ${time}`}</p>
-                <p>{location}</p>
-              </DateWrapper>
-              <img
-                src={picture || require("../../images/stub.png")}
-                alt={title}
-              ></img>
-            </ImgWrapper>
-            <TextWrapper>
-              <h2>{title}</h2>
-              <p>{description}</p>
-            </TextWrapper>
-            <ButtonBigStyled type="button" onClick={deleteCurrent}>
-              Delete event
-            </ButtonBigStyled>
-          </div>
+          <img
+            src={picture || require("../../images/stub.png")}
+            alt={title}
+          ></img>
+          <InfoWrapper>
+            <p>{description}</p>
+            <AdditionalInfoWrapper>
+              <span>{category}</span>
+              <ColoredPriorityStyled $priority={priority}>
+                {priority}
+              </ColoredPriorityStyled>
+              <span>{location}</span>
+              <span>{`${date.slice(5).replace("-", ".")} at ${time}`}</span>
+            </AdditionalInfoWrapper>
+            <ButtonsWrapper>
+              <Link to={`/edit/${id}`}>Edit</Link>
+              <ButtonStyled type="button" onClick={deleteCurrent}>
+                Delete event
+              </ButtonStyled>
+            </ButtonsWrapper>
+          </InfoWrapper>
         </EventDetailsStyled>
-      </Container>
+      </ContainerStyled>
     </section>
   );
 };

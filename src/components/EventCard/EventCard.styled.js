@@ -3,15 +3,12 @@ import { mediaQueries } from "../../styles/mediaQueries";
 
 export const EventCardStyled = styled.div`
   position: relative;
+  overflow: hidden;
   height: 480px;
   padding-bottom: 16px;
   border-radius: 12px;
-  overflow: hidden;
-  background-color: #fff;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-
-  ${mediaQueries("tablet")`width: 332px;`}
-  ${mediaQueries("desktop")`width: 302px;`}
+  background-color: #fff;
 `;
 
 export const ContentWrapper = styled.div`
@@ -30,13 +27,12 @@ export const ContentWrapper = styled.div`
     padding: 10px 24px;
     border-radius: 8px;
     background-color: var(--primary);
+    transition: transform 250ms ease-in-out;
 
-    color: #fff;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.42;
-
-    transition: transform 250ms ease-in-out;
+    color: #fff;
 
     &:hover,
     &:focus {
@@ -47,10 +43,14 @@ export const ContentWrapper = styled.div`
 
 export const ImgWrapper = styled.div`
   position: relative;
+
   img {
     width: 100%;
-    object-fit: cover;
     height: 336px;
+    object-fit: cover;
+
+    ${mediaQueries("tablet")`width: 332px;`}
+    ${mediaQueries("desktop")`width: 302px;`}
   }
 `;
 
@@ -66,32 +66,30 @@ export const CategoryWrapper = styled.div`
     border-radius: 8px;
     background-color: #fff;
 
-    color: var(--primary);
     font-size: 14px;
     font-weight: 500;
     line-height: 1.42;
 
     &:first-child {
       margin-right: 12px;
+      color: var(--primary);
     }
   }
 `;
 
 export const DateWrapper = styled.div`
-  display: flex;
   position: absolute;
+  display: flex;
   width: 100%;
-  justify-content: space-between;
   bottom: 0;
   padding: 8px 16px;
+  justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.8);
 
   p {
-    color: var(--primary);
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 1.71;
+    color: var(--primary);
   }
 `;
 
@@ -100,16 +98,18 @@ export const TextWrapper = styled.div`
 
   h2 {
     margin-bottom: 16px;
-    color: var(--title);
+
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
+    color: var(--title);
   }
 
   p {
     height: 72px;
-    color: var(#49454f);
+
     font-size: 14px;
     line-height: 1.42;
+    color: #49454f;
   }
 `;

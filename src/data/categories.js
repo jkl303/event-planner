@@ -7,3 +7,8 @@ export const categories = [
   "Music",
   "Sport",
 ];
+
+export const categoriesOptions = categories.map((category) => ({
+  value: category,
+  label: category,
+}));

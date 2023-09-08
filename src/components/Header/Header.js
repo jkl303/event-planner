@@ -1,10 +1,10 @@
-import { Container } from "../Container/Container";
 import { SelectLanguageStyled } from "./SelectLanguage.styled";
 import { HeaderStyled, HeaderWrapper, InputWrapper } from "./Header.styled";
 import { SearchList } from "./SearchList/SearchList";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Search } from "../../images/svg/search.svg";
+import { ContainerStyled } from "../../styles/Container.styled";
 
 export const Header = () => {
   const [filter, setFilter] = useState("");
@@ -17,7 +17,7 @@ export const Header = () => {
   return (
     <>
       <HeaderStyled>
-        <Container>
+        <ContainerStyled>
           <HeaderWrapper>
             <Link to="/">Event Planner</Link>
             <SelectLanguageStyled
@@ -39,7 +39,7 @@ export const Header = () => {
               <Search />
             </InputWrapper>
           </HeaderWrapper>
-        </Container>
+        </ContainerStyled>
       </HeaderStyled>
       {filter.length > 1 && <SearchList filter={filter} />}
     </>

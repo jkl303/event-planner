@@ -3,53 +3,47 @@ import { styled } from "styled-components";
 
 export const CalendarFieldWrapper = styled.div`
   position: relative;
-  width: 100%;
   margin-left: auto;
   margin-right: auto;
 `;
 
 export const CalendarButton = styled.button`
   display: flex;
-  justify-content: space-between;
-  height: 56px;
   width: 100%;
+  height: 56px;
   margin-top: 8px;
-  padding: 16px 10px;
-  border-radius: 8px;
+  padding: 16px 12px 16px 12px;
+  justify-content: space-between;
   border: none;
-  background-color: var(--bg);
+  border-radius: 8px;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  background-color: var(--bg);
+  transition: color 250ms ease-in-out;
 
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.5;
   color: var(--text);
-  transition: color 250ms ease-in-out;
 
   &:hover,
   &:focus {
     cursor: pointer;
     color: var(--primary);
-    outline: 1px solid var(--primary);
   }
 
   svg {
     vertical-align: middle;
-    fill: var(--primary);
-    transition: transform 250ms ease-in-out;
     transform: rotate(${(props) => (props.$isShowCalendar ? "-180deg" : "0")});
+    transition: transform 250ms ease-in-out;
   }
 `;
 
 export const CalendarWrapper = styled.div`
   position: absolute;
-  padding: 20px;
-
-  top: 60px;
-
   z-index: 1;
-  background: #fff;
+  top: 60px;
+  padding: 20px;
+  background-color: #fff;
+  animation: toBottom 300ms linear;
 `;
 
 export const CalendarStyled = styled(Calendar)`
@@ -58,6 +52,7 @@ export const CalendarStyled = styled(Calendar)`
   button {
     border: none;
     background: var(--bg);
+
     &:hover {
       cursor: pointer;
     }
@@ -65,8 +60,8 @@ export const CalendarStyled = styled(Calendar)`
 
   .react-calendar__navigation {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 16px;
+    justify-content: space-between;
 
     button {
       transition: color 250ms ease-in-out;
@@ -77,18 +72,13 @@ export const CalendarStyled = styled(Calendar)`
       }
     }
     .react-calendar__navigation__label__labelText {
-      color: var(--text);
-      font-family: Poppins;
       font-size: 14px;
-      font-style: normal;
       font-weight: 500;
       line-height: 1.42;
+      color: var(--text);
     }
 
-    .react-calendar__navigation__prev2-button {
-      display: none;
-    }
-
+    .react-calendar__navigation__prev2-button,
     .react-calendar__navigation__next2-button {
       display: none;
     }
@@ -96,8 +86,6 @@ export const CalendarStyled = styled(Calendar)`
 
   .react-calendar__viewContainer {
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 1.33;
 
     abbr {
@@ -105,19 +93,22 @@ export const CalendarStyled = styled(Calendar)`
     }
 
     .react-calendar__month-view__days {
-      margin-top: 16px;
       display: flex;
+      margin-top: 16px;
       gap: 4px 0;
+
       button {
         padding: 8px 0;
         transition: color 250ms ease, background-color 250ms ease;
 
-        :not(:has(.react-calendar__month-view__days__day--neighboringMonth))
+        :not(:has(.react-calendar__month-view__days__day--neighboringMonth)) {
           &:hover,
-        &:focus {
-          background-color: var(--primary);
-          abbr {
-            color: #fff;
+          &:focus {
+            background-color: var(--primary);
+
+            abbr {
+              color: #fff;
+            }
           }
         }
       }

@@ -6,8 +6,8 @@ export const addEventSchema = Yup.object().shape({
     .matches(/^[aA-zZ\s]+$/, "Invalid input")
     .required("Required"),
   description: Yup.string(),
-  date: Yup.string("INVALID DATE"),
-  time: Yup.string(),
+  date: Yup.string("Invalid date"),
+  time: Yup.array().of(Yup.string("Invalid time")),
   location: Yup.string()
     .matches(/^[aA-zZ\s]+$/, "Invalid input")
     .required("Required"),
@@ -22,7 +22,7 @@ export const editEventSchema = Yup.object().shape({
     .matches(/^[aA-zZ\s]+$/, "Invalid input"),
   description: Yup.string(),
   date: Yup.string(),
-  time: Yup.string(),
+  time: Yup.array().of(Yup.string("Invalid time")),
   location: Yup.string().matches(/^[aA-zZ\s]+$/, "Invalid input"),
   category: Yup.string(),
   picture: Yup.string(),

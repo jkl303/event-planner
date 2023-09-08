@@ -13,31 +13,18 @@ const eventsSlice = createSlice({
         state.push(action.payload);
       },
       prepare(event) {
-        const {
-          title,
-          description,
-          date,
-          time,
-          location,
-          category,
-          picture,
-          priority,
-        } = event;
-
         return {
           payload: {
             id: nanoid(),
-            title,
-            description,
-            date,
-            time,
-            location,
-            category,
-            picture,
-            priority,
+            ...event,
           },
         };
       },
+    },
+    editEvent(state, action) {
+      const index = state.findIndex((event) => event.id === action.payload.id);
+      const picture = action.payload.picture || state[index].picture || "";
+      state[index] = { ...action.payload, picture };
     },
     deleteEvent(state, action) {
       const index = state.findIndex((event) => event.id === action.payload);
@@ -46,5 +33,5 @@ const eventsSlice = createSlice({
   },
 });
 
-export const { addEvent, deleteEvent } = eventsSlice.actions;
-export const eventssReducer = eventsSlice.reducer;
+export const { addEvent, editEvent, deleteEvent } = eventsSlice.actions;
+export const eventsReducer = eventsSlice.reducer;

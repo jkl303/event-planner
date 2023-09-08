@@ -3,46 +3,54 @@ import Select from "react-select";
 
 export const SelectStyled = styled(Select)`
   display: block;
-  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-  border-radius: 8px;
+  width: 100%;
   margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 100%;
+  line-height: 1.5;
   color: var(--text);
 
-  &:hover {
-    outline: 1px solid var(--primary);
-  }
-
   .Select__control {
-    padding: 15px 8px 15px 12px;
-    border-radius: 8px;
+    padding: 16px 12px;
     border: none;
+
+    &:hover {
+      cursor: pointer;
+
+      .Select__single-value {
+        color: var(--primary);
+      }
+    }
 
     &--is-focused {
       box-shadow: none;
     }
     &--menu-is-open {
       .Select__dropdown-indicator {
-        color: var(--primary);
         transform: rotate(-180deg);
       }
     }
   }
 
   .Select__value-container {
+    height: 24px;
     padding: 0;
+  }
+
+  .Select__single-value {
+    transition: color 250ms ease;
   }
 
   .Select__menu {
     max-height: 168px;
-    border: none;
     padding: 8px 0;
+    border: none;
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+    animation: toBottom 250ms linear;
 
     font-size: 14px;
     line-height: 1.5;
@@ -60,9 +68,9 @@ export const SelectStyled = styled(Select)`
 
   .Select__option {
     padding: 16px 0;
+    transition: color 250ms ease-in-out;
 
     color: var(--text);
-    transition: color 250ms ease-in-out;
 
     &:hover {
       cursor: pointer;
@@ -82,11 +90,11 @@ export const SelectStyled = styled(Select)`
   }
 
   .Select__dropdown-indicator {
+    padding: 0;
     border: none;
     outline: none;
-    padding: 0;
+    transition: transform 250ms ease-in-out;
     color: var(--text);
-    transition: color 250ms ease-in-out, transform 250ms ease-in-out;
 
     :hover {
       cursor: pointer;

@@ -1,20 +1,18 @@
 import { styled } from "styled-components";
 
 export const InputStyled = styled.label`
-  display: flex;
-  position: relative;
-  width: 100%;
-  flex-direction: column;
-  margin-bottom: 8px;
-  justify-items: stretch;
-
   input {
     width: 100%;
-    padding: 16px;
+    padding: 16px 36px 16px 12px;
     border: none;
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
     line-height: 1.5;
+
+    &::placeholder {
+      color: var(--text);
+    }
 
     &:hover,
     &:focus {
@@ -25,12 +23,17 @@ export const InputStyled = styled.label`
   textarea {
     width: 100%;
     height: 156px;
-    padding: 12px;
+    padding: 16px 36px 16px 12px;
     resize: none;
     border: none;
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
     line-height: 1.5;
+
+    &::placeholder {
+      color: var(--text);
+    }
 
     &:hover,
     &:focus {
@@ -40,10 +43,16 @@ export const InputStyled = styled.label`
 
   button {
     position: absolute;
+    top: 24px;
     right: 0;
-    bottom: ${(props) => (props.$description ? "114px" : "6px")};
+    padding: 16px 12px;
     border: none;
+    color: var(--primary);
     background-color: transparent;
+
+    svg {
+      display: block;
+    }
 
     &:hover {
       cursor: pointer;

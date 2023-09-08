@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
+import { ColoredPriorityStyled } from "../../styles/ColoredPriority.styled";
 import {
   CategoryWrapper,
   ContentWrapper,
@@ -28,12 +29,14 @@ export const EventCard = ({ event }) => {
     <EventCardStyled>
       <CategoryWrapper>
         <span>{category}</span>
-        <span>{priority}</span>
+        <ColoredPriorityStyled $priority={priority}>
+          {priority}
+        </ColoredPriorityStyled>
       </CategoryWrapper>
       <ContentWrapper>
         <ImgWrapper>
           <DateWrapper>
-            <p>{`${date} at ${time}`}</p>
+            <p>{`${date.slice(5).replace("-", ".")} at ${time}`}</p>
             <p>{location}</p>
           </DateWrapper>
           <img

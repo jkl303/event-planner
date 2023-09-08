@@ -1,6 +1,11 @@
-import { ErrorMessage, Field } from "formik";
-import { ErrorMessageStyled } from "../ErrorMessage.styled";
 import { useEffect, useRef, useState } from "react";
+import { ErrorMessage, Field } from "formik";
+import { TimeField } from "./TimeField/TimeField";
+import { ReactComponent as Dropdown } from "../../../images/svg/dropdown.svg";
+import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
+import { ErrorMessageStyled } from "../ErrorMessage.styled";
+import { ButtonStyled } from "../../../styles/Button.styled";
+import { InputStyled } from "../Input.styled";
 import {
   ButtonsWrapper,
   CalendarButton,
@@ -8,13 +13,9 @@ import {
   CalendarStyled,
   CalendarWrapper,
 } from "./Calendar.styled";
-import { ReactComponent as Dropdown } from "../../../images/svg/dropdown.svg";
-import { ButtonStyled } from "../../../styles/Button.styled";
-import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
-import { InputStyled } from "../Input.styled";
 
-export const TimeAndLocationFields = ({ setFieldValue }) => {
-  const [date, setDate] = useState(new Date() || null);
+export const TimeAndLocationFields = ({ setFieldValue, values }) => {
+  const [date, setDate] = useState(values.date || new Date());
   const [isShowCalendar, setIsShowCalendar] = useState(false);
 
   const wrapperRef = useRef();
@@ -42,7 +43,7 @@ export const TimeAndLocationFields = ({ setFieldValue }) => {
     <>
       <div>
         <label htmlFor="date">
-          Select date
+          <p>Select date</p>
           <CalendarFieldWrapper ref={wrapperRef}>
             <CalendarButton
               type="button"
@@ -81,24 +82,17 @@ export const TimeAndLocationFields = ({ setFieldValue }) => {
       </div>
 
       <div>
-        <InputStyled htmlFor="time">
-          Select time
-          <Field name="time" placeholder="Input" />
-          <button
-            type="button"
-            onClick={() => {
-              setFieldValue("time", "");
-            }}
-          >
-            <Cross />
-          </button>
-        </InputStyled>
+        <label htmlFor="time">
+          <p>Select time</p>
+          <TimeField time={values.time} />
+        </label>
+
         <ErrorMessage name="time" component={ErrorMessageStyled} />
       </div>
 
       <div>
         <InputStyled htmlFor="location">
-          Location
+          <p>Location</p>
           <Field name="location" placeholder="Input" />
           <button
             type="button"

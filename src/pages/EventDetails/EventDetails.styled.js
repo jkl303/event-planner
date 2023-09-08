@@ -1,90 +1,100 @@
 import { styled } from "styled-components";
 import { mediaQueries } from "../../styles/mediaQueries";
+import { Link } from "react-router-dom";
+
+export const BackLinkStyled = styled(Link)`
+  display: flex;
+  align-items: center;
+  margin: 41.5px 0 25.5px;
+  color: var(--primary);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  svg {
+    margin-right: 8px;
+  }
+`;
 
 export const EventDetailsStyled = styled.div`
+  height: 464px;
+  margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  padding-bottom: 16px;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 8px;
   background-color: #fff;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  ${mediaQueries("tablet")`height: 504px;`}
+  ${mediaQueries("desktop")`
+  width: 628px;
+  height: 492px;`}
 
-  ${mediaQueries("tablet")`width: 432px;`}
-  ${mediaQueries("desktop")`width: 602px;`}
-
-    button {
-    width: 193px;
-    margin-right: 20px;
-  }
-`;
-
-export const ImgWrapper = styled.div`
-  position: relative;
   img {
     width: 100%;
+    height: 168px;
+    border-radius: 8px;
     object-fit: cover;
-    height: 336px;
+    ${mediaQueries("tablet")`height: 272px;`}
   }
 `;
 
-export const CategoryWrapper = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 12px;
-  left: 12px;
+export const InfoWrapper = styled.div`
+  padding: 24px 16px 40px;
+  ${mediaQueries("tablet")`padding: 24px 24px 40px;`}
+  ${mediaQueries("desktop")`padding: 20px 16px 40px;`}
 
-  span {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background-color: #fff;
-
-    color: var(--primary);
+  p {
+    height: 60px;
+    color: var(#49454f);
     font-size: 14px;
-    font-weight: 500;
     line-height: 1.42;
-
-    &:first-child {
-      margin-right: 12px;
+    @media (min-width: 768px) and (max-width: 1279px) {
+      height: 40px;
     }
   }
 `;
 
-export const DateWrapper = styled.div`
+export const AdditionalInfoWrapper = styled.div`
   display: flex;
-  position: absolute;
-  width: 100%;
-  justify-content: space-between;
-  bottom: 0;
-  padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.8);
+  margin: 24px 0 40px;
+  flex-wrap: wrap;
+  gap: 12px;
+  ${mediaQueries("desktop")`margin: 12px 0 24px;`}
 
-  p {
-    color: var(--primary);
+  span {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
+
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.71;
+    line-height: 1.42;
+
+    &:not(:nth-child(2)) {
+      color: var(--primary);
+    }
   }
 `;
 
-export const TextWrapper = styled.div`
-  padding: 16px 16px 24px 16px;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  margin-left: auto;
+  justify-content: space-between;
+  ${mediaQueries("tablet")`width: 179px;`}
 
-  h2 {
-    margin-bottom: 16px;
-    color: var(--title);
-    font-size: 16px;
+  a {
+    display: flex;
+    width: 108px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+
+    color: var(--primary);
+    font-size: 12px;
     font-weight: 500;
-    line-height: 24px;
-  }
-
-  p {
-    height: 72px;
-    color: var(#49454f);
-    font-size: 14px;
-    line-height: 1.42;
+    line-height: 1.33;
+    ${mediaQueries("tablet")`width: 55px;`}
   }
 `;

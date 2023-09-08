@@ -1,9 +1,16 @@
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Container } from "../../Container/Container";
 import { useSelector } from "react-redux";
 import { selectEvents } from "../../../redux/events/selectors";
+import { ContainerStyled } from "../../../styles/Container.styled";
+import {
+  SearchListLinkStyled,
+  SearchListStyled,
+  SearchListWrapper,
+} from "./SearchList.styled";
 
 export const SearchList = ({ filter }) => {
+  const lcn = useLocation();
   const events = useSelector(selectEvents);
 
   const filteredEvents = events.filter(
@@ -15,17 +22,20 @@ export const SearchList = ({ filter }) => {
   );
 
   return (
-    <div>
-      <Container>
-        <ul>
-          {filteredEvents.map(({ id, title }) => (
+    <SearchListWrapper>
+      <ContainerStyled>
+        <SearchListStyled>
+          {filteredEvents.map(({ id, title, date, time }) => (
             <li key={id}>
-              <p>{title}</p>
+              <SearchListLinkStyled to={`/details/${id}`} state={{ from: lcn }}>
+                {title}
+                <p>{`${date.slice(5).replace("-", ".")} at ${time}`}</p>
+              </SearchListLinkStyled>
             </li>
           ))}
-        </ul>
-      </Container>
-    </div>
+        </SearchListStyled>
+      </ContainerStyled>
+    </SearchListWrapper>
   );
 };
 

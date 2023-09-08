@@ -1,4 +1,6 @@
 import { useField } from "formik";
+import { components } from "react-select";
+import { ReactComponent as DropdownIcon } from "../../../images/svg/dropdown.svg";
 import { SelectStyled } from "./Select.styled";
 
 export const SelectField = (props) => {
@@ -8,13 +10,22 @@ export const SelectField = (props) => {
     setValue(value);
   };
 
+  const DropdownIndicator = (props) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <DropdownIcon />
+      </components.DropdownIndicator>
+    );
+  };
+
   return (
     <SelectStyled
       {...props}
-      onChange={onChange}
-      onBlur={setTouched}
       classNamePrefix="Select"
       placeholder=""
+      components={{ DropdownIndicator }}
+      onChange={onChange}
+      onBlur={setTouched}
     />
   );
 };

@@ -1,11 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 import "modern-normalize";
 import { variables } from "./variables";
+import { animations } from "./animations";
 import BG from "../images/BG.jpg";
+import { mediaQueries } from "./mediaQueries";
 
 export const GlobalStyle = createGlobalStyle`
 
 ${variables}
+${animations}
 
 body {color: var(--text);
   font-family: 'Poppins', sans-serif;
@@ -23,13 +26,12 @@ p {
 }
 
 h1 {
-font-size: 32px;
+font-size: 24px;
 font-weight: 600;
 line-height: normal;
-margin: 40px 0; }
+${mediaQueries("tablet")`font-size: 32px;`}}
 
-ul,
-ol {
+ul {
   margin: 0;
   padding: 0;
   list-style: none;

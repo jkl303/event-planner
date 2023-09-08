@@ -20,6 +20,7 @@ export const SelectLanguageStyled = styled(Select)`
     &--is-focused {
       box-shadow: none;
     }
+
     &--menu-is-open {
       .Select__dropdown-indicator {
         color: var(--primary);
@@ -33,10 +34,11 @@ export const SelectLanguageStyled = styled(Select)`
   }
 
   .Select__menu {
-    border: none;
     padding: 8px 0;
+    border: none;
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+    animation: toBottom 250ms linear;
 
     font-size: 14px;
     line-height: 1.5;
@@ -44,6 +46,7 @@ export const SelectLanguageStyled = styled(Select)`
 
     &-list {
       padding: 8px 18px 8px 14px;
+
       :first-child {
         margin-bottom: 8px;
       }
@@ -55,13 +58,16 @@ export const SelectLanguageStyled = styled(Select)`
     border-bottom: 1px solid var(--disabled);
     transition: color 250ms ease-in-out;
 
-    :hover {
+    &:hover {
       cursor: pointer;
       color: var(--primary);
+      background-color: transparent;
     }
+
     &--is-focused {
-      background-color: var(--primary);
+      background-color: transparent;
     }
+
     &--is-selected {
       color: var(--text);
       background-color: transparent;
@@ -73,11 +79,11 @@ export const SelectLanguageStyled = styled(Select)`
   }
 
   .Select__dropdown-indicator {
+    padding: 0;
     border: none;
     outline: none;
-    padding: 0;
-    color: var(--text);
     transition: color 250ms ease-in-out, transform 250ms ease-in-out;
+    color: var(--text);
 
     :hover {
       cursor: pointer;

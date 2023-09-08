@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
 export const ErrorMessageStyled = styled.p`
-  padding: 4px 2px 6px;
-  color: var(--high);
+  position: absolute;
   width: 100%;
+  right: 19px;
+  margin-top: 4px;
+
+  text-align: right;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--high);
 `;

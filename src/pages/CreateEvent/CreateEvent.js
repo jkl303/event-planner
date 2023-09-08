@@ -1,13 +1,13 @@
 import { AddEventForm } from "../../components/AddEventForm/AddEventForm";
-import { Container } from "../../components/Container/Container";
+import { ContainerStyled } from "../../styles/Container.styled";
 
 const CreateEvent = () => {
   return (
     <section>
-      <Container>
+      <ContainerStyled>
         <h1>Create new event</h1>
         <AddEventForm />
-      </Container>
+      </ContainerStyled>
     </section>
   );
 };

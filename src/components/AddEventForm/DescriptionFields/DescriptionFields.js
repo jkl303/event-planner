@@ -1,14 +1,14 @@
 import { ErrorMessage, Field } from "formik";
-import { ErrorMessageStyled } from "../ErrorMessage.styled";
 import { ReactComponent as Cross } from "../../../images/svg/cross.svg";
 import { InputStyled } from "../Input.styled";
+import { ErrorMessageStyled } from "../ErrorMessage.styled";
 
 export const DescriptionFields = ({ setFieldValue }) => {
   return (
     <>
       <div>
         <InputStyled htmlFor="title">
-          Title
+          <p>Title</p>
           <Field name="title" type="text" placeholder="Input" />
           <button
             type="button"
@@ -23,7 +23,7 @@ export const DescriptionFields = ({ setFieldValue }) => {
       </div>
       <div>
         <InputStyled type="textarea" htmlFor="description" $description>
-          Description
+          <p>Description</p>
           <Field as="textarea" name="description" placeholder="Input" />
           <button
             type="button"
